@@ -1,11 +1,12 @@
 import showreel from "@/assets/showreel.mp4.asset.json";
 import headerLogo from "@/assets/header-logo.json.asset.json";
+import backgroundTexture from "@/assets/background-texture.png.asset.json";
 // Replace empty references with uploaded asset URLs. Layouts consume this single source.
 export const studioAssets = {
   logo: { image: "", lottie: headerLogo.url },
   hero: { video: showreel.url, poster: "" },
   footer: { image: "", lottie: "" },
-  backgroundTexture: "",
+  backgroundTexture: backgroundTexture.url,
 };
 
 export const studioContact = { email: "", socials: [] as { label: string; url: string }[] };
