@@ -1,6 +1,6 @@
 import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 
-const Lottie = lazy(() => import("lottie-react"));
+const Lottie = lazy(() => import("lottie-react").then((module) => ({ default: module.Lottie })));
 
 export function AnimatedAsset({ image, lottie, alt, fallback }: { image: string; lottie: string; alt: string; fallback: ReactNode }) {
   const [data, setData] = useState<object | null>(null);
@@ -21,7 +21,7 @@ export function AnimatedAsset({ image, lottie, alt, fallback }: { image: string;
     }).then(setData).catch(() => setData(null));
     return () => controller.abort();
   }, [lottie]);
-  if (data) return <span role="img" aria-label={alt}><Suspense fallback={fallback}><Lottie animationData={data} loop={!reduced} autoplay={!reduced} /></Suspense></span>;
+  if (data) return <span role="img" aria-label={alt}><Suspense fallback={fallback}><Lottie key={String(reduced)} src={data} className="lottie-asset" loop={!reduced} autoplay={!reduced} /></Suspense></span>;
   if (image) return <img src={image} alt={alt} className="animated-image" />;
   return <>{fallback}</>;
 }

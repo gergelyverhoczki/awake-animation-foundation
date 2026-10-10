@@ -191,6 +191,7 @@ a:focus-visible { outline: 2px solid var(--ring); outline-offset: 6px; }
 .logo-type small { display: block; font-size: 8px; font-weight: 550; letter-spacing: 4px; margin-top: 8px; }
 .logo-star { position: absolute; right: -27px; top: -2px; color: var(--primary); font-size: 31px; animation: star-turn 16s linear infinite; }
 .animated-image { max-width: 100%; height: auto; display: block; }
+.lottie-asset { width: 100%; aspect-ratio: 1; }
 .desktop-nav { display: flex; align-items: center; gap: 43px; font-size: 13px; font-weight: 500; }
 .desktop-nav a { display: inline-flex; align-items: center; gap: 9px; padding: 10px 0; transition: color 180ms; }
 .desktop-nav a:hover, .mobile-nav a:hover { color: var(--primary); }
@@ -311,7 +312,7 @@ h2 { margin: 13px 0 0; font-size: 43px; line-height: 1.1; font-weight: 500; }
   h2 { font-size: 30px; margin-top: 12px; }
   .carousel-counter { display: none; }
   .carousel-controls { gap: 7px; }
-  .arrow-button { width: 33px; height: 33px; }
+  .arrow-button { width: 40px; height: 40px; }
   .carousel-viewport { padding-left: 6%; }
   .carousel-track { gap: 16px; }
   .project-slide { flex-basis: 83%; }
