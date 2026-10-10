@@ -4,6 +4,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedAsset } from "./animated-asset";
 import { studioAssets } from "@/lib/studio";
+import { scrollToTop } from "@/lib/scroll";
 
 const navigation = [{ label: "Work", hash: "work" }, { label: "About Us", hash: "about" }, { label: "Contact", hash: "contact" }];
 
@@ -11,7 +12,7 @@ export function Header({ home = false }: { home?: boolean }) {
   const [open, setOpen] = useState(false);
   return <header className="studio-header">
     <div className="header-inner">
-      <Link to="/" hash="top" className="studio-logo" aria-label="Awake Animation — home" onClick={() => setOpen(false)}>
+      <Link to="/" hash="top" className="studio-logo" aria-label="Awake Animation — home" onClick={(event) => { setOpen(false); if (home) { event.preventDefault(); scrollToTop(); } }}>
         <AnimatedAsset {...studioAssets.logo} alt="Awake Animation" fallback={<span className="logo-type">awake<span className="logo-star" aria-hidden="true">✳</span><small>ANIMATION</small></span>} />
       </Link>
       <nav className="desktop-nav" aria-label="Main navigation">
