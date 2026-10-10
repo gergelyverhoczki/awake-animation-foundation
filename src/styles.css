@@ -257,8 +257,8 @@ h2 { margin: 13px 0 0; font-size: 43px; line-height: 1.1; font-weight: 500; }
 .footer-animation > span { width: 100px; }
 .footer-star { color: var(--primary); font-size: 90px; line-height: 1; text-align: center; animation: star-turn 28s linear infinite; }
 .footer-bottom { display: grid; grid-template-columns: minmax(0,1fr) auto auto; gap: 24px; align-items: center; border-top: 1px solid var(--border); padding: 25px 0 30px; font-size: 8px; color: var(--muted-foreground); letter-spacing: 1px; }
-.back-top { display: flex; gap: 12px; align-items: center; }
-.back-top:hover { color: var(--foreground); }
+.back-top { display: inline-flex; gap: 10px; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px; border: 1px solid var(--foreground); color: var(--foreground); font-size: 11px; font-weight: 500; letter-spacing: 1.5px; transition: background-color 200ms, color 200ms; }
+.back-top:hover, .back-top:focus-visible { background: var(--foreground); color: var(--background); }
 .project-intro { padding: 64px 5% 40px; }
 .return-link { display: inline-flex; align-items: center; gap: 12px; color: var(--muted-foreground); font-size: 12px; }
 .return-link:hover { color: var(--foreground); }
