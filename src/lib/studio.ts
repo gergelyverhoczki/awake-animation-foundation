@@ -1,7 +1,8 @@
+import showreel from "@/assets/showreel.mp4.asset.json";
 // Replace empty references with uploaded asset URLs. Layouts consume this single source.
 export const studioAssets = {
   logo: { image: "", lottie: "" },
-  hero: { video: "", poster: "" },
+  hero: { video: showreel.url, poster: "" },
   footer: { image: "", lottie: "" },
   backgroundTexture: "",
 };
