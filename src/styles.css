@@ -192,6 +192,7 @@ a:focus-visible { outline: 2px solid var(--ring); outline-offset: 6px; }
 .logo-star { position: absolute; right: -27px; top: -2px; color: var(--primary); font-size: 31px; animation: star-turn 16s linear infinite; }
 .animated-image { max-width: 100%; height: auto; display: block; }
 .lottie-asset { width: 100%; aspect-ratio: 1; }
+.studio-logo .lottie-asset { aspect-ratio: 3707 / 539; }
 .desktop-nav { display: flex; align-items: center; gap: 43px; font-size: 13px; font-weight: 500; }
 .desktop-nav a { display: inline-flex; align-items: center; gap: 9px; padding: 10px 0; transition: color 180ms; }
 .desktop-nav a:hover, .mobile-nav a:hover { color: var(--primary); }
