@@ -2,6 +2,7 @@ import showreel from "@/assets/showreel.mp4.asset.json";
 import headerLogo from "@/assets/header-logo.json.asset.json";
 import mimicryLogo from "@/assets/mimicry-logo.png.asset.json";
 import backgroundTexture from "@/assets/background-texture.png.asset.json";
+import mimicryBgVideo from "@/assets/mimicry-bg-video.mp4.asset.json";
 // Replace empty references with uploaded asset URLs. Layouts consume this single source.
 export const studioAssets = {
   logo: { image: "", lottie: headerLogo.url },
@@ -44,5 +45,6 @@ export function nextProject(slug: string) {
 export const mimicryPartner = {
   name: "Mimicry Motions",
   logo: mimicryLogo.url,
+  video: mimicryBgVideo.url,
   url: "https://mimicry.hu/en/brief-selection-from-our-animation-works/",
 };

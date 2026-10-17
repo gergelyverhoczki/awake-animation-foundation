@@ -354,8 +354,13 @@ h2 { margin: 13px 0 0; font-size: 43px; line-height: 1.1; font-weight: 500; }
 }
 
 .mimicry-page { display: flex; flex-direction: column; gap: 2.5rem; min-height: 60vh; }
+.mimicry-media { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); align-items: center; gap: clamp(2rem, 5vw, 4.5rem); }
 .mimicry-logo-link { display: inline-block; width: min(420px, 80vw); transition: opacity 0.3s ease; }
 .mimicry-logo-link:hover { opacity: 0.7; }
 .mimicry-logo-link:focus-visible { outline: 2px solid var(--primary); outline-offset: 8px; }
 .mimicry-logo-link img { width: 100%; height: auto; display: block; }
+.mimicry-video, .looping-video-fallback.mimicry-video { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; pointer-events: none; background: var(--muted); }
 .mimicry-copy { max-width: 38rem; font-size: 1.125rem; line-height: 1.6; color: var(--muted-foreground); }
+@media (max-width: 900px) {
+  .mimicry-media { grid-template-columns: 1fr; gap: 2rem; }
+}
