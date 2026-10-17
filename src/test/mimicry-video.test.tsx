@@ -26,7 +26,7 @@ describe("Mimicry partner video", () => {
     expect(video.tagName).toBe("VIDEO");
     expect(video).toHaveProperty("muted", true);
     expect(video).toHaveProperty("loop", true);
-    expect(video).toHaveProperty("autoPlay", true);
+    expect(video).toHaveAttribute("autoplay");
     expect(video).toHaveProperty("controls", false);
   });
 });
