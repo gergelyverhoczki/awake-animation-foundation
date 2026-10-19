@@ -28,9 +28,9 @@ export function WorkCarousel() {
       <div className="carousel-controls"><span className="carousel-counter" aria-live="polite">{String(position + 1).padStart(2, "0")} <span>/ {String(projects.length).padStart(2, "0")}</span></span><Button variant="outline" size="icon" className="arrow-button" aria-label="Previous projects" title="Previous projects" disabled={!canPrev} onClick={() => api?.scrollPrev()}><ArrowLeft /></Button><Button variant="outline" size="icon" className="arrow-button" aria-label="Next projects" title="Next projects" disabled={!canNext} onClick={() => api?.scrollNext()}><ArrowRight /></Button></div>
     </div>
     <div className="carousel-viewport" ref={ref}><div className="carousel-track">
-      {projects.map((project, index) => <Link key={project.slug} to="/work/$slug" params={{ slug: project.slug }} className="project-slide" aria-label={`View ${project.title}${project.placeholder ? " — placeholder" : ""}`}>
+      {projects.map((project, index) => <Link key={project.slug} to="/work/$slug" params={{ slug: project.slug }} className="project-slide" aria-label={`View ${project.title}`}>
         {project.thumbnail ? <img src={project.thumbnail} alt={project.thumbnailAlt} loading="lazy" className="project-thumbnail" /> : <ProjectArtwork index={index} alt={project.thumbnailAlt} />}
-        <div className="project-caption"><div><h3>{project.title}</h3><span>{project.placeholder ? "PROJECT PLACEHOLDER" : "VIEW PROJECT"}</span></div><ArrowUpRight size={22} /></div>
+        <div className="project-caption"><div><h3>{project.title}</h3><span>{project.placeholder ? "TITLE TO BE ADDED" : "VIEW PROJECT"}</span></div><ArrowUpRight size={22} /></div>
       </Link>)}
     </div></div>
   </section>;
