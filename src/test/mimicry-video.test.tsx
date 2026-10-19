@@ -19,7 +19,12 @@ describe("Mimicry partner video", () => {
   });
 
   it("plays silently on a loop with no controls", () => {
-    render(<LoopingVideo src={mimicryPartner.video} label="Immersive LED wall visuals by Mimicry Motions" />);
+    render(
+      <LoopingVideo
+        src={mimicryPartner.video}
+        label="Immersive LED wall visuals by Mimicry Motions"
+      />,
+    );
 
     const video = screen.getByLabelText("Immersive LED wall visuals by Mimicry Motions");
 

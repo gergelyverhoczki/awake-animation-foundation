@@ -40,12 +40,42 @@ export type Project = {
 };
 
 const projectPictures = [
-  { thumbnail: project01.url, width: 1248, height: 813, alt: "Animated musician playing a guitar with a rose in his mouth" },
-  { thumbnail: project02.url, width: 592, height: 666, alt: "Birch trees and a small house in a textured collage" },
-  { thumbnail: project03.url, width: 1195, height: 880, alt: "A portrait assembled from torn photographic fragments" },
-  { thumbnail: project04.url, width: 1765, height: 1060, alt: "Black-and-white musician with animated lettering" },
-  { thumbnail: project05.url, width: 1754, height: 892, alt: "Small animated creatures surrounding a sculpture of found objects" },
-  { thumbnail: project06.url, width: 1426, height: 1029, alt: "A branch drawing shapes in sand beside a green leaf" },
+  {
+    thumbnail: project01.url,
+    width: 1248,
+    height: 813,
+    alt: "Animated musician playing a guitar with a rose in his mouth",
+  },
+  {
+    thumbnail: project02.url,
+    width: 592,
+    height: 666,
+    alt: "Birch trees and a small house in a textured collage",
+  },
+  {
+    thumbnail: project03.url,
+    width: 1195,
+    height: 880,
+    alt: "A portrait assembled from torn photographic fragments",
+  },
+  {
+    thumbnail: project04.url,
+    width: 1765,
+    height: 1060,
+    alt: "Black-and-white musician with animated lettering",
+  },
+  {
+    thumbnail: project05.url,
+    width: 1754,
+    height: 892,
+    alt: "Small animated creatures surrounding a sculpture of found objects",
+  },
+  {
+    thumbnail: project06.url,
+    width: 1426,
+    height: 1029,
+    alt: "A branch drawing shapes in sand beside a green leaf",
+  },
 ];
 
 export const projects: Project[] = projectPictures.map((picture, index) => ({

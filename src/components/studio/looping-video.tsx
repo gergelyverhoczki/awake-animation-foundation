@@ -16,7 +16,9 @@ export function LoopingVideo({ src, label, poster, className }: LoopingVideoProp
     const element = video.current;
     if (!element) return;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const saveData = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
+    const saveData =
+      (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData ===
+      true;
     let inView = false;
     const update = () => {
       if (preference.matches || saveData || !inView) element.pause();
@@ -33,7 +35,10 @@ export function LoopingVideo({ src, label, poster, className }: LoopingVideoProp
       preference.removeEventListener("change", update);
     };
   }, []);
-  if (!src || failed) return <div className={`looping-video-fallback ${className ?? ""}`} role="img" aria-label={label} />;
+  if (!src || failed)
+    return (
+      <div className={`looping-video-fallback ${className ?? ""}`} role="img" aria-label={label} />
+    );
   return (
     <video
       ref={video}

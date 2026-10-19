@@ -32,7 +32,9 @@ export const Route = createFileRoute("/")({
               "@type": "Organization",
               name: "Awake Animation",
               description,
-              ...(studioContact.socials.length > 0 ? { sameAs: studioContact.socials.map((social) => social.url) } : {}),
+              ...(studioContact.socials.length > 0
+                ? { sameAs: studioContact.socials.map((social) => social.url) }
+                : {}),
             },
             { "@type": "WebSite", name: "Awake Animation" },
           ],
@@ -44,5 +46,12 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  return <SiteFrame home><HeroVideo /><WorkCarousel /><AboutUs /><Contact /></SiteFrame>;
+  return (
+    <SiteFrame home>
+      <HeroVideo />
+      <WorkCarousel />
+      <AboutUs />
+      <Contact />
+    </SiteFrame>
+  );
 }
