@@ -4,4 +4,4 @@
 - [x] Build reusable directly accessible project pages.
 - [x] Verify desktop/mobile navigation, carousel, and project flows.- [x] Add standalone Mimicry partner page and menu item.
 - [x] Add silent looping video beside the Mimicry logo.
-- [ ] Add six matching-size uploaded carousel pictures and verify their separate project pages.
+- [x] Add six matching-size uploaded carousel pictures and verify their separate project pages.
