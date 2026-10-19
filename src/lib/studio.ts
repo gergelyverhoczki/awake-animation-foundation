@@ -3,6 +3,12 @@ import headerLogo from "@/assets/header-logo.json.asset.json";
 import mimicryLogo from "@/assets/mimicry-logo.png.asset.json";
 import backgroundTexture from "@/assets/background-texture.png.asset.json";
 import mimicryBgVideo from "@/assets/mimicry-bg-video.mp4.asset.json";
+import project01 from "@/assets/project-01.png.asset.json";
+import project02 from "@/assets/project-02.png.asset.json";
+import project03 from "@/assets/project-03.png.asset.json";
+import project04 from "@/assets/project-04.png.asset.json";
+import project05 from "@/assets/project-05.png.asset.json";
+import project06 from "@/assets/project-06.png.asset.json";
 // Replace empty references with uploaded asset URLs. Layouts consume this single source.
 export const studioAssets = {
   logo: { image: "", lottie: headerLogo.url },
@@ -26,11 +32,20 @@ export type Project = {
   placeholder?: boolean;
 };
 
-export const projects: Project[] = Array.from({ length: 5 }, (_, index) => ({
+const projectPictures = [
+  { thumbnail: project01.url, alt: "Animated musician playing a guitar with a rose in his mouth" },
+  { thumbnail: project02.url, alt: "Birch trees and a small house in a textured collage" },
+  { thumbnail: project03.url, alt: "A portrait assembled from torn photographic fragments" },
+  { thumbnail: project04.url, alt: "Black-and-white musician with animated lettering" },
+  { thumbnail: project05.url, alt: "Small animated creatures surrounding a sculpture of found objects" },
+  { thumbnail: project06.url, alt: "A branch drawing shapes in sand beside a green leaf" },
+];
+
+export const projects: Project[] = projectPictures.map((picture, index) => ({
   slug: `project-${String(index + 1).padStart(2, "0")}`,
   title: `Project ${String(index + 1).padStart(2, "0")}`,
-  thumbnail: "",
-  thumbnailAlt: `Placeholder artwork for project ${index + 1}`,
+  thumbnail: picture.thumbnail,
+  thumbnailAlt: picture.alt,
   placeholder: true,
 }));
 
