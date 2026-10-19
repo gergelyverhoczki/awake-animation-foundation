@@ -7,7 +7,8 @@ type LoopingVideoProps = {
   className?: string;
 };
 
-/** Muted, soundless, endlessly looping background video. Not interactive: no controls, no click target. */
+/** Muted, soundless, endlessly looping background video. Not interactive: no controls, no click target.
+ *  Plays only while on screen; paused when off-screen or when reduced motion / data savings are requested. */
 export function LoopingVideo({ src, label, poster, className }: LoopingVideoProps) {
   const video = useRef<HTMLVideoElement>(null);
   const [failed, setFailed] = useState(false);
@@ -15,15 +16,34 @@ export function LoopingVideo({ src, label, poster, className }: LoopingVideoProp
     const element = video.current;
     if (!element) return;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const saveData =
+      (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData ===
+      true;
+    // Without IntersectionObserver support (old browsers, test DOMs) assume visible.
+    let inView = typeof IntersectionObserver === "undefined";
     const update = () => {
-      if (preference.matches) element.pause();
+      if (preference.matches || saveData || !inView) element.pause();
       else element.play().catch(() => setFailed(true));
     };
+    const observer =
+      typeof IntersectionObserver === "undefined"
+        ? null
+        : new IntersectionObserver((entries) => {
+            inView = entries.some((entry) => entry.isIntersecting);
+            update();
+          });
+    observer?.observe(element);
     update();
     preference.addEventListener("change", update);
-    return () => preference.removeEventListener("change", update);
+    return () => {
+      observer?.disconnect();
+      preference.removeEventListener("change", update);
+    };
   }, []);
-  if (!src || failed) return <div className={`looping-video-fallback ${className ?? ""}`} role="img" aria-label={label} />;
+  if (!src || failed)
+    return (
+      <div className={`looping-video-fallback ${className ?? ""}`} role="img" aria-label={label} />
+    );
   return (
     <video
       ref={video}
