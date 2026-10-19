@@ -44,12 +44,38 @@ function isH3SwallowedErrorBody(body: string): boolean {
   }
 }
 
+const CSP = [
+  "default-src 'self'",
+  "img-src 'self' data: blob:",
+  "media-src 'self' blob:",
+  "font-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  "script-src 'self' 'unsafe-inline'",
+  "connect-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "frame-ancestors 'self' https://*.lovable.dev https://*.lovable.app https://*.lovableproject.com",
+].join("; ");
+
+function withSecurityHeaders(response: Response, request: Request): Response {
+  const headers = new Headers(response.headers);
+  if (new URL(request.url).protocol === "https:") {
+    headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+  }
+  headers.set("X-Content-Type-Options", "nosniff");
+  headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
+  headers.set("Content-Security-Policy", CSP);
+  return new Response(response.body, { status: response.status, statusText: response.statusText, headers });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      return withSecurityHeaders(await normalizeCatastrophicSsrResponse(response), request);
     } catch (error) {
       console.error(error);
       return new Response(renderErrorPage(), {
