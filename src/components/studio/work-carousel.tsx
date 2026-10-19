@@ -29,7 +29,7 @@ export function WorkCarousel() {
     </div>
     <div className="carousel-viewport" ref={ref}><div className="carousel-track">
       {projects.map((project, index) => <Link key={project.slug} to="/work/$slug" params={{ slug: project.slug }} className="project-slide" aria-label={`View ${project.title}`}>
-        {project.thumbnail ? <img src={project.thumbnail} alt={project.thumbnailAlt} loading="lazy" className="project-thumbnail" /> : <ProjectArtwork index={index} alt={project.thumbnailAlt} />}
+        {project.thumbnail ? <img src={project.thumbnail} srcSet={project.thumbnailSrcSet} sizes="(max-width: 640px) 83vw, (max-width: 1000px) 47vw, 38vw" width={project.thumbnailWidth} height={project.thumbnailHeight} alt={project.thumbnailAlt} loading="lazy" decoding="async" className="project-thumbnail" /> : <ProjectArtwork index={index} alt={project.thumbnailAlt} />}
         <div className="project-caption"><div><h3>{project.title}</h3><span>{project.placeholder ? "TITLE TO BE ADDED" : "VIEW PROJECT"}</span></div><ArrowUpRight size={22} /></div>
       </Link>)}
     </div></div>
