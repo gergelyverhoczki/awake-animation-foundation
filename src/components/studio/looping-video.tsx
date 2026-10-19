@@ -19,19 +19,24 @@ export function LoopingVideo({ src, label, poster, className }: LoopingVideoProp
     const saveData =
       (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData ===
       true;
-    let inView = false;
+    // Without IntersectionObserver support (old browsers, test DOMs) assume visible.
+    let inView = typeof IntersectionObserver === "undefined";
     const update = () => {
       if (preference.matches || saveData || !inView) element.pause();
       else element.play().catch(() => setFailed(true));
     };
-    const observer = new IntersectionObserver((entries) => {
-      inView = entries.some((entry) => entry.isIntersecting);
-      update();
-    });
-    observer.observe(element);
+    const observer =
+      typeof IntersectionObserver === "undefined"
+        ? null
+        : new IntersectionObserver((entries) => {
+            inView = entries.some((entry) => entry.isIntersecting);
+            update();
+          });
+    observer?.observe(element);
+    update();
     preference.addEventListener("change", update);
     return () => {
-      observer.disconnect();
+      observer?.disconnect();
       preference.removeEventListener("change", update);
     };
   }, []);
