@@ -1,22 +1,25 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteFrame } from "@/components/studio/site-frame";
 import { LoopingVideo } from "@/components/studio/looping-video";
-import { mimicryPartner } from "@/lib/studio";
+import { mimicryPartner, siteUrl } from "@/lib/studio";
 
 const title = "Mimicry — Awake Animation";
 const description =
   "Awake Animation partners with Mimicry Motions on large-format animated visuals for LED walls.";
 
 export const Route = createFileRoute("/mimicry")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title },
       { name: "description", content: description },
       { property: "og:title", content: title },
       { property: "og:description", content: description },
-      { property: "og:url", content: "/mimicry" },
+      { property: "og:url", content: siteUrl("/mimicry") },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "/mimicry" }],
+    links: [{ rel: "canonical", href: siteUrl("/mimicry") }],
   }),
   component: MimicryPage,
 });
