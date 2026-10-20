@@ -12,4 +12,7 @@
 - Studio asset references and typed project data live in a single browser-safe module; adding or replacing media must not require duplicating page layouts.
 - Use homepage anchor sections and one data-driven dynamic project route; this preserves the requested single-scrolling homepage and shareable project URLs.
 - Keep each studio section in a focused reusable component; the shared SiteFrame owns the header, global texture layer, and footer.
-- Load Lottie dynamically only after animation data is fetched in the browser, because the animation renderer depends on browser APIs.
+- Load expression-free animations with the SVG light Lottie player dynamically after browser-side fetching; bake reference expressions into existing keyframes to preserve appearance without unsafe-eval.
+- Keep the public origin and asset URLs in studio.ts; leaf routes own share metadata so root tags cannot override project previews.
+- Derive sitemap paths from required route-level inclusion decisions; omit placeholder projects and unsupported lastmod timestamps.
+- Maintain static security headers in public/_headers and equivalent Worker response headers, including error responses; static files bypass the Worker.

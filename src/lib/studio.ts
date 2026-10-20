@@ -1,7 +1,7 @@
 import showreel from "@/assets/showreel.mp4.asset.json";
 import heroPoster from "@/assets/hero-poster.webp.asset.json";
-import ogImage from "@/assets/og-image.jpg.asset.json";
-import headerLogo from "@/assets/header-logo.json.asset.json";
+import latinFont from "@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url";
+import headerLogo from "@/assets/header-logo-expression-free.json.asset.json";
 import mimicryLogo from "@/assets/mimicry-logo.png.asset.json";
 import backgroundTexture from "@/assets/background-texture.png.asset.json";
 import mimicryBgVideo from "@/assets/mimicry-bg-video.mp4.asset.json";
@@ -12,10 +12,15 @@ import project04 from "@/assets/project-04.png.asset.json";
 import project05 from "@/assets/project-05.png.asset.json";
 import project06 from "@/assets/project-06.png.asset.json";
 // Replace empty references with uploaded asset URLs. Layouts consume this single source.
+export const SITE_URL = "https://awakeanimation.com";
+export const siteUrl = (path: string) => new URL(path, SITE_URL).href;
+
 export const studioAssets = {
   logo: { image: "", lottie: headerLogo.url },
   hero: { video: showreel.url, poster: heroPoster.url },
-  shareImage: ogImage.url,
+  shareImage: "/og-image.jpg",
+  brandIcon: "/icon-512.png",
+  latinFont,
   footer: { image: "", lottie: "" },
   backgroundTexture: backgroundTexture.url,
 };

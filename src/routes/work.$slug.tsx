@@ -1,23 +1,31 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  Link,
+  notFound,
+  useRouter,
+  type ErrorComponentProps,
+} from "@tanstack/react-router";
+import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SiteFrame } from "@/components/studio/site-frame";
 import { ProjectArtwork } from "@/components/studio/project-artwork";
-import { findProject, nextProject, projects } from "@/lib/studio";
+import { findProject, nextProject, projects, siteUrl } from "@/lib/studio";
 
 export const Route = createFileRoute("/work/$slug")({
+  staticData: { sitemap: false },
   loader: ({ params }) => {
     const project = findProject(params.slug);
     if (!project) throw notFound();
     return { project, next: nextProject(params.slug) };
   },
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     const title = loaderData
       ? `${loaderData.project.title} — Awake Animation`
       : "Project not found — Awake Animation";
     const description =
       loaderData?.project.description ||
       "A project from the Awake Animation portfolio. Project details coming soon.";
-    const path = `/work/${loaderData?.project.slug ?? ""}`;
+    const path = siteUrl(`/work/${params.slug}`);
     return {
       meta: [
         { title },
@@ -25,6 +33,8 @@ export const Route = createFileRoute("/work/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:url", content: path },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
         ...(!loaderData || loaderData.project.placeholder
           ? [{ name: "robots", content: "noindex, follow" }]
           : []),
@@ -33,8 +43,28 @@ export const Route = createFileRoute("/work/$slug")({
     };
   },
   notFoundComponent: ProjectNotFound,
+  errorComponent: ProjectError,
   component: ProjectPage,
 });
+
+function ProjectError({ reset }: ErrorComponentProps) {
+  const router = useRouter();
+  return (
+    <SiteFrame>
+      <section className="project-intro">
+        <h1>This page didn't load</h1>
+        <Button
+          onClick={() => {
+            void router.invalidate();
+            reset();
+          }}
+        >
+          Try again
+        </Button>
+      </section>
+    </SiteFrame>
+  );
+}
 
 function ProjectNotFound() {
   return (

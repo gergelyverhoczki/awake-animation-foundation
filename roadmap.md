@@ -5,3 +5,7 @@
 - [x] Verify desktop/mobile navigation, carousel, and project flows.- [x] Add standalone Mimicry partner page and menu item.
 - [x] Add silent looping video beside the Mimicry logo.
 - [x] Add six matching-size uploaded carousel pictures and verify their separate project pages.
+- [x] Apply second-pass SEO, security, font and accessibility fixes without redesigning.
+- [x] Verify lint, 18 tests, automatic build, local logo under CSP and Nitro static-header merge.
+- [ ] Verify hosted preview logo under CSP — blocked by the hosted preview's sign-in redirect.
+- [ ] Verify published static headers, logo and Lighthouse targets — blocked because the site is not published.

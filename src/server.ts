@@ -31,7 +31,7 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   console.error(consumeLastCapturedError() ?? new Error(`h3 swallowed SSR error: ${body}`));
   return new Response(renderErrorPage(), {
     status: 500,
-    headers: { "content-type": "text/html; charset=utf-8" },
+    headers: { "content-type": "text/html; charset=utf-8", "X-Robots-Tag": "noindex" },
   });
 }
 
@@ -61,7 +61,7 @@ const CSP = [
 function withSecurityHeaders(response: Response, request: Request): Response {
   const headers = new Headers(response.headers);
   if (new URL(request.url).protocol === "https:") {
-    headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+    headers.set("Strict-Transport-Security", "max-age=63072000; includeSubDomains");
   }
   headers.set("X-Content-Type-Options", "nosniff");
   headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
@@ -79,13 +79,18 @@ export default {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return withSecurityHeaders(await normalizeCatastrophicSsrResponse(response), request);
+      const normalized = await normalizeCatastrophicSsrResponse(response);
+      if (normalized.status === 404) normalized.headers.set("X-Robots-Tag", "noindex");
+      return withSecurityHeaders(normalized, request);
     } catch (error) {
       console.error(error);
-      return new Response(renderErrorPage(), {
-        status: 500,
-        headers: { "content-type": "text/html; charset=utf-8" },
-      });
+      return withSecurityHeaders(
+        new Response(renderErrorPage(), {
+          status: 500,
+          headers: { "content-type": "text/html; charset=utf-8", "X-Robots-Tag": "noindex" },
+        }),
+        request,
+      );
     }
   },
 };

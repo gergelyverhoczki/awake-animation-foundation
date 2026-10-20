@@ -1,6 +1,8 @@
 import { lazy, Suspense, useEffect, useState, type ReactNode } from "react";
 
-const Lottie = lazy(() => import("lottie-react").then((module) => ({ default: module.Lottie })));
+const Lottie = lazy(() =>
+  import("lottie-react").then((module) => ({ default: module.LottieLight })),
+);
 
 /** Defer Lottie loading until the browser is idle so it never competes with the LCP. */
 function onIdle(callback: () => void): () => void {
