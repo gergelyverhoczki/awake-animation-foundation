@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { studioAssets } from "@/lib/studio";
+import { Button } from "@/components/ui/button";
 
 function NotFoundComponent() {
   return (
