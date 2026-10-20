@@ -5,3 +5,5 @@
 - [x] Verify desktop/mobile navigation, carousel, and project flows.- [x] Add standalone Mimicry partner page and menu item.
 - [x] Add silent looping video beside the Mimicry logo.
 - [x] Add six matching-size uploaded carousel pictures and verify their separate project pages.
+- [ ] Apply second-pass SEO, security, font and accessibility fixes without redesigning.
+- [ ] Verify lint, tests, automatic build, logo under CSP and static-header output; report unavailable live checks.
