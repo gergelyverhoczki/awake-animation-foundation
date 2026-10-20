@@ -1,4 +1,10 @@
-import { createFileRoute, Link, notFound, useRouter, type ErrorComponentProps } from "@tanstack/react-router";
+import {
+  createFileRoute,
+  Link,
+  notFound,
+  useRouter,
+  type ErrorComponentProps,
+} from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { SiteFrame } from "@/components/studio/site-frame";
@@ -47,7 +53,14 @@ function ProjectError({ reset }: ErrorComponentProps) {
     <SiteFrame>
       <section className="project-intro">
         <h1>This page didn't load</h1>
-        <Button onClick={() => { void router.invalidate(); reset(); }}>Try again</Button>
+        <Button
+          onClick={() => {
+            void router.invalidate();
+            reset();
+          }}
+        >
+          Try again
+        </Button>
       </section>
     </SiteFrame>
   );

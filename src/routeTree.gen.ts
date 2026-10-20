@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MimicryRouteImport } from './routes/mimicry'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 
 const IndexRoute = IndexRouteImport.update({
@@ -23,6 +24,11 @@ const MimicryRoute = MimicryRouteImport.update({
   path: '/mimicry',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkSlugRoute = WorkSlugRouteImport.update({
   id: '/work/$slug',
   path: '/work/$slug',
@@ -32,30 +38,34 @@ const WorkSlugRoute = WorkSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/mimicry': typeof MimicryRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work/$slug': typeof WorkSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/mimicry': typeof MimicryRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work/$slug': typeof WorkSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/mimicry': typeof MimicryRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/work/$slug': typeof WorkSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/mimicry' | '/work/$slug'
+  fullPaths: '/' | '/mimicry' | '/sitemap.xml' | '/work/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/mimicry' | '/work/$slug'
-  id: '__root__' | '/' | '/mimicry' | '/work/$slug'
+  to: '/' | '/mimicry' | '/sitemap.xml' | '/work/$slug'
+  id: '__root__' | '/' | '/mimicry' | '/sitemap.xml' | '/work/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   MimicryRoute: typeof MimicryRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WorkSlugRoute: typeof WorkSlugRoute
 }
 
@@ -75,6 +85,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MimicryRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work/$slug': {
       id: '/work/$slug'
       path: '/work/$slug'
@@ -88,6 +105,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   MimicryRoute: MimicryRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   WorkSlugRoute: WorkSlugRoute,
 }
 export const routeTree = rootRouteImport
